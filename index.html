@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASIX</title>
+  <link rel="icon" type="image/x-icon" href="images/icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <div>
+      <a href=""><img src="images/logo.png"alt=""></a>
+    </div>
+
+    <div class="wrap">
+      <div class="search">
+        <input type="text" id="searchTerm" class="searchTerm" placeholder="What are you looking for?">
+        <button type="submit" class="searchButton" onclick="search()" ></button>
+     </div>
+    </div>
+
+    <div>
+      <ul>
+        <li><a href="">Shop</a></li>
+        <li><a href="">Help</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+      </div>
+  </div>
+  <div class="product-list-container">
+    <div id="product-card6" class="product-card">
+      <img src="https://tn.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/69/5877/1.jpg?9801" alt="product photo">
+      <h3 id="product-title6" class="product-title">headphones P47</h3>
+      <p id="product-description6" class="product-description">Generic Casque Bluetooth - MP3 - P47 - Blanc</p>
+      <p class="product-price">36.50 TND</p>
+    </div>
+    <div id="product-card5" class="product-card">
+      <img src="https://tn.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/29/0236/1.jpg?1815" alt="product photo">
+      <h3 id="product-title5" class="product-title">inkax airpods</h3>
+      <p id="product-description5" class="product-description">Inkax Ecouteur T02 - Bluetooth V5.3 - Touch Series - Blanc</p>
+      <p class="product-price">53.49 TND</p>
+    </div>
+    <div id="product-card4" class="product-card">
+      <img src="https://tn.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/98/6696/1.jpg?8070" alt="">
+      <h3 id="product-title4" class="product-title">black sneakers</h3>
+      <p id="product-description4" class="product-description">VIP SHOES Espadrilles " Y " NOIR TENDANCE 2023 femme</p>
+      <p class="product-price">75.00 TND</p>
+    </div>
+    <div id="product-card3" class="product-card">
+      <img src="https://tn.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/30/1457/1.jpg?2071" alt="">
+      <h3 id="product-title3" class="product-title">brown shoes</h3>
+      <p id="product-description3" class="product-description">VIP SHOES Mocassin-chaussures été marron avec ceinture</p>
+      <p class="product-price">59.00 TND</p>
+    </div>
+    <div id="product-card2" class="product-card">
+      <img src="https://tn.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/29/6696/1.jpg?8067" alt="">
+      <h3 id="product-title2" class="product-title">white sneakers</h3>
+      <p id="product-description2" class="product-description">VIP SHOES Espadrilles " Y " BLANC TENDANCE 2023 femme</p>
+      <p class="product-price">68.00 TND</p>
+    </div>
+    <div id="product-card1" class="product-card">
+      <img src="https://tn.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/82/6555/1.jpg?6968" alt="">
+      <h3 id="product-title1" class="product-title">black sneakers</h3>
+      <p id="product-description1" class="product-description">VIP SHOES Espadrilles - Noir</p>
+      <p class="product-price">69.00 TND</p><br>
+    </div>
+    <div id="product-card0" class="product-card">
+      <img src="https://tn.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/04/6364/1.jpg?6767" alt="Product Name">
+      <h3 id="product-title0" class="product-title">blue sneakers</h3>
+      <p id="product-description0" class="product-description">Smiri shoes Basket Sport - Bleu - Pour Homme</p>
+      <p class="product-price">79.00 TND</p>
+    </div>
+  </div>
+  <h1 id="sorry" style="text-align: center; display: none;">no result for this product, come back later :) </h1>
+</body>
+</html>
+<script>
+  var searchTerm = document.getElementById("searchTerm");
+  searchTerm.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+        search();
+    }
+    });
+
+  function findCommonWords(str1, str2) {
+  // Split strings into arrays of words
+  const words1 = str1.toLowerCase().match(/\b\w+\b/g) || [];
+  const words2 = str2.toLowerCase().match(/\b\w+\b/g) || [];
+  // Find common words
+  const commonWords = words1.filter(word => words2.includes(word));
+  return commonWords;
+  }
+
+  function search(){
+    var searchTerm = document.getElementById("searchTerm").value;
+    for (i=0; i<=100; i++){
+      var titl = document.getElementById("product-title"+i).innerHTML;
+      var desc = document.getElementById("product-description"+i).innerHTML;
+      var commonWords1 = findCommonWords(searchTerm,desc)
+      var commonWords2 = findCommonWords(searchTerm,titl)
+      if (commonWords1.length>0 || commonWords2.length>0){
+         document.getElementById("product-card"+i).style.display = "block";
+      }else{
+         document.getElementById("product-card"+i).style.display = "none";
+      }
+    }
+  }
+</script>
